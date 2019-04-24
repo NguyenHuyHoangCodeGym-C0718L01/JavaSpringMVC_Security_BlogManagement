@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:width="content=${post.content}">Delete blog</title>
+    <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+</head>
+<body onload="myFunction()">
+<h1>Delete blog</h1>
+<h2>Are you sure?</h2>
+<p>
+    <a href="/blog">Blogs list</a>
+</p>
+<form th:action="@{/delete-blog}" th:object="${post}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Blog name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Author name:</td>
+            <td><input type="text" th:field="*{author}"/></td>
+        </tr>
+        <tr>
+            <td>Category name:</td>
+            <td><input type="text" th:field="*{category.name}"></td>
+        </tr>
+    </table>
+    <textarea rows="4" cols="50" name="content" th:field="*{content}">
+Enter text here...</textarea><br>
+    <input type="submit" value="Delete blog"><br>
+</form>
+<script>
+    function myFunction() {
+        var abc = tinyMCE.activeEditor.ge
+    }
+</script>
+</body>
+</html>

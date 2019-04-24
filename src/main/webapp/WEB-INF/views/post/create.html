@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create blog</title>
+    <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+</head>
+<body>
+<h1>Create blog</h1>
+<p>
+    <a href="/blog">Blog list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/create-blog}" th:object="${post}" method="post">
+    <table>
+        <tr>
+            <td>Blog name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Author name:</td>
+            <td><input type="text" th:field="*{author}"/></td>
+        </tr>
+        <tr>
+            <td>Category name:</td>
+            <td>
+                <select th:field="*{category}">
+                    <option th:each="p : ${categories}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <textarea rows="4" cols="50" name="content" th:field="*{content}">
+Enter text here...</textarea><br>
+    <input type="submit" value="Create blog"><br>
+</form>
+</body>
+</html>

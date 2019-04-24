@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit blog</title>
+</head>
+<body>
+<h1>Edit blog</h1>
+<p>
+    <a href="/blog">Blogs list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/edit-blog}" th:object="${blog}" method="post" id="form">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Blog name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Author name:</td>
+            <td><input type="radio" th:field="*{authorId}" name="authName" value=1> Hoàng<br>
+                <input type="radio" th:field="*{authorId}" name="authName" value=2> Thịnh<br>
+                <input type="radio" th:field="*{authorId}" name="authName" value=3> Sơn<br>
+            </td>
+        </tr>
+        <tr>
+            <td>Tag name:</td>
+            <td><input type="radio" th:field="*{tagId}" name="tagName" value=1> sport<br>
+                <input type="radio" th:field="*{tagId}" name="tagName" value=2> economy<br>
+                <input type="radio" th:field="*{tagId}" name="tagName" value=3> law<br>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Edit blog"></td>
+        </tr>
+    </table>
+</form>
+<textarea rows="4" cols="50" name="content" form="form" th:field="*{blog.content}">
+Enter text here...</textarea>
+</body>
+</html>
